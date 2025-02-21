@@ -6,7 +6,7 @@
     - name: Instalar apps extras (importar tasks)
       ansible.builtin.import_tasks:
         file: 04_aplicativos/tasks/apps_extras.yml
-      when: extras | bool
+      when: (extras is defined) and (extras | bool)
 
     - name: Atualizar lista de pacotes (apt-get update)
       ansible.builtin.apt:
