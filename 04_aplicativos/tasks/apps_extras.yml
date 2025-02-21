@@ -9,6 +9,6 @@
       - gparted
     state: present
 
-- name: Instalar qBittorent (importar tasks)
-  ansible.builtin.import_tasks:
-    file: 04_aplicativos/tasks/qbittorrent.yml
+# - name: Instalar qBittorent (importar tasks)
+#   ansible.builtin.import_tasks:
+#     file: 04_aplicativos/tasks/qbittorrent.yml
