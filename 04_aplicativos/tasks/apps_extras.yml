@@ -1,0 +1,14 @@
+---
+- name: Instalar apps Flatpak (importar tasks)
+  ansible.builtin.import_tasks:
+    file: 04_aplicativos/tasks/flatpak.yml
+
+- name: Instalar pacotes apt extras
+  ansible.builtin.apt:
+    name:
+      - gparted
+    state: present
+
+- name: Instalar qBittorent (importar tasks)
+  ansible.builtin.import_tasks:
+    file: 04_aplicativos/tasks/qbittorrent.yml

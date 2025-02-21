@@ -3,11 +3,16 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: Instalar apps extras (importar tasks)
+      ansible.builtin.import_tasks:
+        file: 04_aplicativos/tasks/apps_extras.yml
+      when: extras | bool
+
     - name: Atualizar lista de pacotes (apt-get update)
       ansible.builtin.apt:
         update_cache: true
 
-    - name: Instalar pacotes
+    - name: Instalar pacotes APT
       ansible.builtin.apt:
         name:
           - build-essential
