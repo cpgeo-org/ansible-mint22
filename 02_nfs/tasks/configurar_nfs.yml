@@ -1,0 +1,64 @@
+---
+- name: Copiar arquivo de configuração /etc/master
+  ansible.builtin.copy:
+    src: nfs/files/auto.master
+    dest: /etc/auto.master
+    mode: "0644"
+
+- name: Copiar arquivo de configuração /etc/auto.cpgeo_database
+  ansible.builtin.copy:
+    src: nfs/files/auto.cpgeo_database
+    dest: /etc/auto.cpgeo_database
+    mode: "0644"
+
+- name: Copiar arquivo de configuração /etc/auto.dados
+  ansible.builtin.copy:
+    src: nfs/files/auto.dados
+    dest: /etc/auto.dados
+    mode: "0644"
+
+- name: Criar diretório /cpgeo_database para ponto de montagem
+  ansible.builtin.file:
+    path: /cpgeo_database
+    state: directory
+    mode: "0755"
+
+- name: Criar diretório /dados para ponto de montagem
+  ansible.builtin.file:
+    path: /dados
+    state: directory
+    mode: "0755"
+
+- name: Criar link simbólico /ftp apontando para /dados/ftp
+  ansible.builtin.file:
+    src: /dados/ftp
+    dest: /ftp
+    state: link
+    force: true
+
+- name: Criar link simbólico /nis apontando para /dados/nis
+  ansible.builtin.file:
+    src: /dados/nis
+    dest: /nis
+    state: link
+    force: true
+
+- name: Criar link simbólico /seismic apontando para /dados/nis/seismic
+  ansible.builtin.file:
+    src: /dados/nis/seismic
+    dest: /seismic
+    state: link
+    force: true
+
+- name: Criar link simbólico /database_linhas apontando para /cpgeo_database/7/database_linhas
+  ansible.builtin.file:
+    src: /cpgeo_database/7/database_linhas
+    dest: /database_linhas
+    state: link
+    force: true
+
+- name: Recarregar e ativar serviço autofs
+  ansible.builtin.systemd:
+    name: autofs
+    state: reloaded
+    enabled: true

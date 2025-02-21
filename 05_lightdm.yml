@@ -1,0 +1,10 @@
+---
+- name: Permitir login manual na tela de login LightDM
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Editar arquivo de configuração /etc/lightdm/lightdm.conf
+      ansible.builtin.copy:
+        src: 05_lightdm/files/lightdm.conf
+        dest: /etc/lightdm/lightdm.conf
+        mode: "0644"

@@ -1,0 +1,7 @@
+---
+- name: Instalar autofs e nfs-common
+  ansible.builtin.apt:
+    name:
+      - autofs
+      - nfs-common
+    state: present

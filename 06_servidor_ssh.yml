@@ -1,0 +1,15 @@
+---
+- name: Configurar servidor SSH
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Editar o arquivo de configuração do servidor ssh /etc/sshd_config
+      ansible.builtin.copy:
+        src: 06_servidor_ssh/files/sshd_config
+        dest: /etc/ssh/sshd_config
+        mode: "0644"
+
+    - name: Recarregar serviço ssh
+      ansible.builtin.systemd:
+        name: ssh
+        state: reloaded
