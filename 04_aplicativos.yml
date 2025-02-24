@@ -18,6 +18,8 @@
           - build-essential
           - cmake
           - curl
+          - default-jdk
+          - default-jdk-doc
           - fzf
           - gedit
           - gnumeric
